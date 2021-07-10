@@ -43,6 +43,19 @@ function generatePassword() {
   while(buildPass.length < passLength) {
     buildPass = buildPass + chars[Math.floor(Math.random()*chars.length)];
   }
+
+  // function to check for desired characters
+    function containsChar(password, characters) {
+        for (var i = 0; i < password.length; i++) {
+           var letter = password.charAt(i);
+           if (characters.includes(letter)){
+             return true;
+           }
+           else {
+             return false;
+           }
+        }
+      }
   
   return buildPass;
 }
