@@ -39,6 +39,8 @@ function generatePassword() {
     chars = chars.concat(num);
   }
 
+  console.log(chars);
+
   // add characters to password until desired length reached
   while(buildPass.length < passLength) {
     buildPass = buildPass + chars[Math.floor(Math.random()*chars.length)];
@@ -97,7 +99,6 @@ function generatePassword() {
       buildPass = replace(buildPass, Math.floor(Math.random()*buildPass.length), num[Math.floor(Math.random()*num.length)]);
     }
   }
-
   return buildPass;
 }
 
@@ -111,7 +112,10 @@ function writePassword() {
 
   passwordText.value = password;
 
-  buildPass ="";
+  //reset global variables for next time button is pressed
+  buildPass = "";
+  passLength = 0;
+  chars = [];
 }
 
 // Add event listener to generate button
