@@ -56,6 +56,21 @@ function generatePassword() {
            }
         }
       }
+
+    // function to replace random char in string
+  function replace(string, index, character) {
+      return string.substr(0, index) + character + string.substr(index + character.length);
+    }
+
+  console.log(buildPass);
+  
+  if(containsChar(buildPass,lower)=== false) {
+        var test = Math.floor(Math.random()*buildPass.length);
+        console.log("The replacement position is: " + test);
+        var test2 = lower[Math.floor(Math.random()*lower.length)];
+        console.log("The replacement letter is: " + test2)
+        buildPass = replace(buildPass, test, test2);
+    }
   
   return buildPass;
 }
