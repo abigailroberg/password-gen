@@ -46,32 +46,58 @@ function generatePassword() {
 
   // function to check for desired characters
     function containsChar(password, characters) {
+      var contains = false;
         for (var i = 0; i < password.length; i++) {
-           var letter = password.charAt(i);
-           if (characters.includes(letter)){
-             return true;
-           }
-           else {
-             return false;
+           var character = password.charAt(i);
+           if (characters.includes(character)){
+             contains = true;
+             break;
            }
         }
+      return contains;
       }
 
     // function to replace random char in string
-  function replace(string, index, character) {
-      return string.substr(0, index) + character + string.substr(index + character.length);
+  function replace(string, index, replacement) {
+      return string.substr(0, index) + replacement + string.substr(index + replacement.length);
     }
+  
+  // check & replace for lowercase letters
+  if(confirmLower) {
+    console.log("checking for lowercase letters in " + buildPass);
+    if(containsChar(buildPass,lower) === false) {
+      console.log("no lowercase letters, replacement happening");
+      buildPass = replace(buildPass, Math.floor(Math.random()*buildPass.length), lower[Math.floor(Math.random()*lower.length)]);
+    }
+  }
 
-  console.log(buildPass);
-  
-  if(containsChar(buildPass,lower)=== false) {
-        var test = Math.floor(Math.random()*buildPass.length);
-        console.log("The replacement position is: " + test);
-        var test2 = lower[Math.floor(Math.random()*lower.length)];
-        console.log("The replacement letter is: " + test2)
-        buildPass = replace(buildPass, test, test2);
-    }
-  
+  // check & replace for uppercase letters
+  if(confirmUpper) {
+    console.log("checking for uppercase letters in " + buildPass);
+    if(containsChar(buildPass,upper) === false) {
+      console.log("no uppercase letters, replacement happening");
+      buildPass = replace(buildPass, Math.floor(Math.random()*buildPass.length), upper[Math.floor(Math.random()*upper.length)]);
+    }
+  }
+
+  // check & replace for special characters
+  if(confirmSpecial) {
+    console.log("checking for special characters in " + buildPass);
+    if(containsChar(buildPass,special) === false) {
+      console.log("no special characters, replacement happening");
+      buildPass = replace(buildPass, Math.floor(Math.random()*buildPass.length), special[Math.floor(Math.random()*special.length)]);
+    }
+  }
+
+  // check & replace for numeric characters
+  if(confirmNum) {
+    console.log("checking for numeric characters in " + buildPass);
+    if(containsChar(buildPass,num) === false) {
+      console.log("no numeric characters, replacement happening");
+      buildPass = replace(buildPass, Math.floor(Math.random()*buildPass.length), num[Math.floor(Math.random()*num.length)]);
+    }
+  }
+
   return buildPass;
 }
 
