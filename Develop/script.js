@@ -28,6 +28,15 @@ function generatePassword() {
   var confirmSpecial = window.confirm("Would you like special characters in your password?");
   var confirmNum = window.confirm("Would you like numbers in your password?");
 
+  // confirm at least one character type selected
+  while(confirmLower === false && confirmUpper === false && confirmSpecial === false && confirmNum === false) {
+    window.alert("Please select at least 1 character type!");
+    confirmLower = window.confirm("Would you like lowercase letters in your password?");
+    confirmUpper = window.confirm("Would you like uppercase letters in your password?");
+    confirmSpecial = window.confirm("Would you like special characters in your password?");
+    confirmNum = window.confirm("Would you like numbers in your password?");
+  }
+
   // put all desired character types into 1 array
   if (confirmLower) {
     chars = chars.concat(lower);
